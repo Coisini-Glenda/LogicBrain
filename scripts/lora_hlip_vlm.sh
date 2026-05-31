@@ -1,0 +1,35 @@
+export WANDB_MODE=disabled
+
+OMP_NUM_THREADS=16 deepspeed --include localhost:0,3 --master_port=29502 src/train/train_hlip_vlm.py \
+    --deepspeed ./scripts/zero2.json \
+    --wb_name Med3DVLM-Qwen-3-8b-finetune-HLIP \
+    --model_name_or_path output/qwen3-8b \
+    --vision_encoder_type "singlescan_h2_token2744" \
+    --pretrain_vision_model ./output/HLIP/pretrained_HLIP_ViT.bin \
+    --lora_enable True \
+    --data_root cap_data \
+    --cap_csv_filename report_with_mode.csv \
+    --vqa_csv_filename qa_with_mode.csv \
+    --closed_vqa_csv_filename closed_qa_with_mode.csv \
+    --therapy_prognosis_csv_filename prognosis_results_with_mode.csv \
+    --bf16 True \
+    --output_dir /data/huangxiaofei/Brian_CT/output/qwen3_8b_hlip_vlm_v3 \
+    --model_max_length 1024 \
+    --num_train_epochs 4 \
+    --per_device_train_batch_size 4 \
+    --per_device_eval_batch_size 1 \
+    --gradient_accumulation_steps 4 \
+    --eval_strategy "no" \
+    --eval_accumulation_steps 1 \
+    --eval_steps 0.04 \
+    --save_strategy "steps" \
+    --save_steps 1000 \
+    --save_total_limit 1 \
+    --learning_rate 2e-5 \
+    --weight_decay 0. \
+    --warmup_ratio 0.03 \
+    --lr_scheduler_type "cosine" \
+    --logging_steps 0.001 \
+    --gradient_checkpointing False \
+    --dataloader_pin_memory True \
+    --dataloader_num_workers 16

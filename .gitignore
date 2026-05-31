@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Outputs
+output/
+*.bin
+*.safetensors
+
+# Data
+cap_data/
+Brain_CT_Images/
+CQ500/
+Slice_Selected/
+
+# Training
+wandb/
+logs/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
