@@ -2,7 +2,7 @@
 
 **A Guideline-Constrained Vision-Language Foundation Model for Verifiable 3D Brain CT Reasoning**
 
-Xiaofei Huang\*, Jie Liu\*, Jiansong Zhang, Zhuoqin Yang, Xiaoling Luo, Hsin-Yu Wu, Cheng-Yi Li, Feng Lirng, Yu-Chieh Ko, Juan Yu, Wenting Chen\*, Kao-Jung Chang\*, Linlin Shen\*
+Xiaofei Huang\*, Jiansong Zhang\*, Jie Liu, Zhuoqin Yang, Xiaoling Luo, Hsin-Yu Wu, Cheng-Yi Li, Feng Lirng, Yu-Chieh Ko, Juan Yu, Wenting Chen\*, Kao-Jung Chang\*, Linlin Shen\*
 
 *: Contributed equally (co-first)  \*: Corresponding author
 
