@@ -1,4 +1,4 @@
-# GCVLM-Brain
+# LogicBrain
 
 **A Guideline-Constrained Vision-Language Foundation Model for Verifiable 3D Brain CT Reasoning**
 
@@ -12,11 +12,11 @@ Shenzhen University · City University of Hong Kong · National Yang Ming Chiao 
 
 ## Overview
 
-GCVLM-Brain is a unified 3D vision-language foundation model that grounds clinical reasoning in evidence-based medicine for brain CT analysis. The model integrates an **HLIP 3D visual encoder** with a **Qwen3-8B** language backbone via **LoRA** fine-tuning, enabling end-to-end reasoning from volumetric CT perception to treatment prognosis within a single architecture.
+LogicBrain is a unified 3D vision-language foundation model that grounds clinical reasoning in evidence-based medicine for brain CT analysis. The model integrates an **HLIP 3D visual encoder** with a **Qwen3-8B** language backbone via **LoRA** fine-tuning, enabling end-to-end reasoning from volumetric CT perception to treatment prognosis within a single architecture.
 
 The core innovation is a **deterministic, six-tier decision tree** that encodes authoritative clinical guidelines (evidence levels 1a–5) as computable prior knowledge. This constrains model outputs to verifiable imaging evidence—treatment recommendations are traceable to specific guideline clauses rather than statistical extrapolations from unstructured report corpora. The model is trained on a large-scale multi-task dataset of over 520,000 clinically traceable samples spanning report generation, visual question answering, and imaging-driven treatment prognosis.
 
-![GCVLM-Brain Pipeline Overview](fig1.png)
+![LogicBrain Pipeline Overview](fig1.png)
 
 ## Key Features
 
@@ -63,8 +63,8 @@ The core innovation is a **deterministic, six-tier decision tree** that encodes 
 ### Installation
 
 ```bash
-git clone https://github.com/xxx/GCVLM-Brain.git
-cd GCVLM-Brain
+git clone https://github.com/xxx/LogicBrain.git
+cd LogicBrain
 
 conda create -n gcvlm python=3.10
 conda activate gcvlm
@@ -145,75 +145,75 @@ bash scripts/eval/eval_treatment_prognosis.sh
 
 | Model | BLEU | ROUGE-L | METEOR | BERTScore | DocLens Recall | DocLens Precision |
 |-------|------|---------|--------|-----------|----------------|-------------------|
-| RadFM | 0.501 | 0.565 | 0.498 | 0.832 | 0.549 | 0.602 |
-| M3D | 0.524 | 0.584 | 0.415 | 0.845 | 0.556 | 0.625 |
-| Med3DVLM | 0.537 | 0.599 | 0.427 | 0.869 | 0.571 | 0.639 |
-| **GCVLM-Brain** | **0.606** | **0.627** | **0.527** | **0.934** | **0.655** | **0.663** |
+| RadFM | 0.502 | 0.548 | 0.451 | 0.875 | 0.549 | 0.602 |
+| M3D | 0.521 | 0.561 | 0.467 | 0.878 | 0.556 | 0.625 |
+| Med3DVLM | 0.533 | 0.579 | 0.478 | 0.878 | 0.571 | 0.639 |
+| **LogicBrain** | **0.595** | **0.619** | **0.523** | **0.889** | **0.655** | **0.663** |
 
 **Full-Reference (FR) — Decision-Logic Consistency**
 
 | Model | Precision | Recall | F1 Score |
 |-------|-----------|--------|----------|
-| RadFM | 0.6341 | 0.6249 | 0.6246 |
-| M3D | 0.6714 | 0.6438 | 0.6534 |
-| Med3DVLM | 0.7245 | 0.7122 | 0.7023 |
-| **GCVLM-Brain** | **0.8723** | **0.8486** | **0.8603** |
+| RadFM | 0.634 | 0.625 | 0.625 |
+| M3D | 0.671 | 0.644 | 0.653 |
+| Med3DVLM | 0.725 | 0.712 | 0.702 |
+| **LogicBrain** | **0.872** | **0.849** | **0.860** |
 
 **Full-Reference (FR) — LLM-Based Multi-Dimensional Clinical Quality (6-dim)**
 
 | Model | Coverage | Faithfulness & Accuracy | Granularity | Clinical Reasoning | Risk Stratification Accuracy | Clinical Validity | Overall |
 |-------|----------|------------------------|-------------|-------------------|------------------------------|-------------------|---------|
-| RadFM | 2.69 | 1.79 | 3.01 | 2.60 | 3.95 | 2.35 | 2.72 |
-| M3D | 2.79 | 1.89 | 3.06 | 2.70 | 4.07 | 2.58 | 2.85 |
-| Med3DVLM | 2.91 | 2.09 | 3.11 | 2.86 | 4.19 | 2.86 | 3.02 |
-| **GCVLM-Brain** | **3.09** | **2.40** | **3.19** | **3.04** | **4.32** | **3.18** | **3.25** |
+| RadFM | 2.694 | 1.789 | 3.006 | 2.600 | 3.955 | 2.350 | 2.560 |
+| M3D | 2.797 | 1.806 | 3.058 | 2.700 | 4.073 | 2.579 | 2.722 |
+| Med3DVLM | 2.917 | 2.097 | 3.110 | 2.860 | 4.190 | 2.849 | 2.584 |
+| **LogicBrain** | **3.091** | **2.391** | **3.192** | **3.045** | **4.316** | **3.175** | **3.043** |
 
 **Non-Reference (NR) — Expert-Calibrated Clinical Utility (5-pt Likert)**
 
 | Model | Clinical Accuracy & Completeness | Risk Stratification & Severity | Clinical Feasibility & Decision Value | Overall Quality |
 |-------|------|------|------|------|
-| RadFM | 3.13 | 2.39 | 3.00 | 2.40 |
-| M3D | 4.00 | 2.25 | 3.15 | 2.63 |
-| Med3DVLM | 4.02 | 3.49 | 3.96 | 3.74 |
-| **GCVLM-Brain** | **4.18** | **3.63** | **4.34** | **4.08** |
+| RadFM | 3.131 | 2.389 | 3.000 | 2.400 |
+| M3D | 3.591 | 2.249 | 3.151 | 2.631 |
+| Med3DVLM | 4.024 | 3.496 | 3.962 | 3.744 |
+| **LogicBrain** | **4.186** | **3.627** | **4.342** | **4.078** |
 
 ### Visual Question Answering (3D-Brain-CT)
 
 **Closed-Ended VQA**
 
-| Model | Accuracy | Jaccard Index |
-|-------|----------|---------------|
-| RadFM | 0.356 | 0.556 |
-| M3D | 0.369 | 0.559 |
-| Med3DVLM | 0.398 | 0.589 |
-| **GCVLM-Brain** | **0.499** | **0.672** |
+| Model | Accuracy |
+|-------|----------|
+| RadFM | 0.352 |
+| M3D | 0.410 |
+| Med3DVLM | 0.441 |
+| **LogicBrain** | **0.520** |
 
 **Open-Ended VQA**
 
 | Model | BLEU | ROUGE-L | METEOR | BERTScore | DocLens Recall | DocLens Precision | MSE ↓ |
 |-------|------|---------|--------|-----------|----------------|-------------------|-------|
-| RadFM | 0.431 | 0.462 | 0.441 | 0.852 | 0.398 | 0.486 | 14.329 |
-| M3D | 0.452 | 0.469 | 0.458 | 0.866 | 0.401 | 0.487 | 13.462 |
-| Med3DVLM | 0.460 | 0.502 | 0.460 | 0.881 | 0.443 | 0.501 | 10.506 |
-| **GCVLM-Brain** | **0.516** | **0.537** | **0.535** | **0.936** | **0.492** | **0.554** | **8.439** |
+| RadFM | 0.432 | 0.462 | 0.458 | 0.919 | 0.398 | 0.486 | 14.329 |
+| M3D | 0.449 | 0.478 | 0.475 | 0.922 | 0.401 | 0.487 | 13.462 |
+| Med3DVLM | 0.460 | 0.486 | 0.531 | 0.923 | 0.443 | 0.501 | 10.506 |
+| **LogicBrain** | **0.510** | **0.534** | — | **0.930** | **0.492** | **0.554** | **8.439** |
 
 ### Report Generation (3D-Brain-CT)
 
 | Model | BLEU | ROUGE-L | METEOR | BERTScore | DocLens Recall | DocLens Precision |
 |-------|------|---------|--------|-----------|----------------|-------------------|
-| RadFM | 0.221 | 0.308 | 0.243 | 0.812 | 0.298 | 0.346 |
-| M3D | 0.246 | 0.315 | 0.248 | 0.822 | 0.299 | 0.365 |
-| Med3DVLM | 0.265 | 0.331 | 0.283 | 0.856 | 0.343 | 0.399 |
-| **GCVLM-Brain** | **0.278** | **0.344** | **0.295** | **0.867** | **0.389** | **0.439** |
+| RadFM | 0.221 | 0.273 | 0.238 | 0.844 | 0.298 | 0.346 |
+| M3D | 0.242 | 0.296 | 0.260 | 0.853 | 0.299 | 0.365 |
+| Med3DVLM | 0.261 | 0.353 | 0.286 | 0.872 | 0.343 | 0.399 |
+| **LogicBrain** | **0.332** | **0.412** | **0.351** | **0.880** | **0.389** | **0.439** |
 
 ### Zero-Shot External Validation (CQ500) — Non-Reference Clinical Utility
 
-| Model | Clinical Accuracy & Completeness | Risk Stratification & Severity | Clinical Feasibility & Decision Value | Overall Quality |
-|-------|------|------|------|------|
-| RadFM | 2.61 | 2.39 | 2.74 | 2.25 |
-| M3D | 3.36 | 3.40 | 3.79 | 3.44 |
-| Med3DVLM | 3.08 | 3.22 | 3.81 | 3.25 |
-| **GCVLM-Brain** | **3.98** | **4.05** | **3.87** | **3.96** |
+| Model | Clinical Accuracy & Completeness | Risk Stratification & Severity | Overall Quality |
+|-------|------|------|------|
+| RadFM | 2.614 | 2.396 | 2.252 |
+| M3D | 3.136 | 2.942 | 3.045 |
+| Med3DVLM | 3.087 | 3.219 | 3.247 |
+| **LogicBrain** | **4.278** | **4.567** | **4.293** |
 
 > All baseline models were co-fine-tuned on the identical ~522K-sample multitask dataset using each model's officially recommended strategy, isolating architectural differences as the primary comparison axis.
 
