@@ -129,11 +129,11 @@ bash scripts/eval/eval_treatment_prognosis.sh
 | Report Generation | — | 18,894 | 18,894 |
 | Visual Question Answering | Open-ended | 18,894 | 245,622 |
 | Visual Question Answering | Closed-ended | 18,894 | 207,834 |
-| Treatment & Prognosis | — | 18,894 | ~50,000 |
-| **Total** | | **18,894** | **~522,350** |
+| Treatment & Prognosis | — | 18,894 | 18,894 |
+| **Total** | | **18,894** | **~491,244** |
 
 - **Internal Cohort (BrainCT)**: 18,894 brain CT scans from Taipei Veterans General Hospital (2010–2022). 13,226 scans for training, 1,889 for testing.
-- **External Cohort (CQ500)**: 491 multi-scanner head CTs (GE, Philips, Siemens), publicly available at [Kaggle](https://www.kaggle.com/datasets/crawford/qureai-headct).
+- **External Cohort (CQ500)**: 485 multi-scanner head CTs (GE, Philips, Siemens), publicly available at [Kaggle](https://www.kaggle.com/datasets/crawford/qureai-headct).
 
 > The internal 3D brain CT dataset is not publicly available due to privacy protection. For further details, refer to the BrainGPT study ([doi:10.1038/s41467-025-57426-0](https://doi.org/10.1038/s41467-025-57426-0)).
 
